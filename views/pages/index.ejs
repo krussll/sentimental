@@ -2,29 +2,12 @@
 <html lang="en" ng-app="faceApp">
 	<head>
 		<meta charset="utf-8">
-		<title>FACE!</title>
-		<style>
-			div.wrapper {
-				position: relative;
-				width: 450px;
-			}
-
-			img.russell {
-				height: 100px;
-				width: 100px;
-				position: absolute;
-			}
-
-			img#second-russell {
-				right: 0px;
-			}
-		</style>
+		<title>Trump Mood Playlister</title>
 	</head>
-	<body ng-controller="faceController" ng-init="face.init()">
+	<body>
 		<div class="wrapper">
-			<img class="russell" id="second-russell" src="russell.png" />
-			<img class="russell" id="minute-russell" src="russell.png" />
-			<img src="{{face.img}}.jpg" />
+			<div><%= artist %></div>
+			<div><%= song %></div>
 		</div>
 
 		<div>
@@ -33,39 +16,4 @@
 	</body>
 </html>
 
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-<script src="jQueryRotate.js"></script>
-<script>
-	// Define the `phonecatApp` module
-	var faceApp = angular.module('faceApp', []);
-
-	// Define the `faceController` controller on the `faceApp` module
-	faceApp.controller('faceController', function FaceController($scope, $timeout, $interval) {
-		$scope.face = {
-			img: null,
-			init: function () {
-				$scope.updateImage();
-
-				$interval($scope.updateImage, 1000);
-			},
-			getMillisecondsToNextHour: function() { return (60 - new Date().getMinutes()) * 60000; },
-			
-		};
-
-		$scope.updateImage = function() {
-			hour = new Date().getHours();
-			minute = new Date().getMinutes();
-			second = new Date().getSeconds();
-
-			hour = hour > 12 ? hour - 12 : hour
-
-			if (hour !== $scope.face.img) {
-				$scope.face.img = hour;
-			}
-			
-			$("#minute-russell").rotate({ angle: (minute * 6) });
-			$("#second-russell").rotate({ angle: (second * 6) });
-		};
-	});
-</script>
