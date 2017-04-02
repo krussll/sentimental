@@ -29,8 +29,9 @@ app.get('/', function(request, response) {
 
       var song = rows[0][0]["song"];
       var artist = rows[0][0]["artist"];
+      var videoId = rows[0][0]["video_id"];
 
-      response.render('pages/index', { song: song, artist: artist});
+      response.render('pages/index', { song: song, artist: artist, videoId: videoId});
   });
 });
 
