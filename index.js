@@ -15,8 +15,6 @@ connection.connect(function(err){
   }
 });
 
-app.set('port', (process.env.PORT || 8000));
-
 app.use(express.static(__dirname + '/public'));
 
 // views is directory for all template files
@@ -35,6 +33,6 @@ app.get('/', function(request, response) {
   });
 });
 
-app.listen(app.get('port'), function() {
-  console.log('Node app is running on port', app.get('port'));
+app.listen(process.env.PORT || 3000, function(){
+  console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
 });
